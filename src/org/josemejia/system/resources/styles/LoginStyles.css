@@ -1,0 +1,117 @@
+.root {
+    -fx-background-color: #F2ECE4;
+    -fx-font-family: "Arial Black", "Arial Bold", sans-serif;
+}
+
+.label,
+.etiqueta {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111111;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-letter-spacing: 1px;
+}
+
+Label {
+    -fx-content-display: center;
+}
+
+.text-field,
+.password-field,
+.campo {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #111111;
+    -fx-border-width: 3px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-text-fill: #111111;
+    -fx-font-size: 13px;
+    -fx-padding: 6px 8px;
+    -fx-prompt-text-fill: #8a8a8a;
+}
+
+.text-field:focused,
+.password-field:focused,
+.campo:focused {
+    -fx-border-color: #E31E24;
+    -fx-border-width: 4px;
+}
+
+.hyperlink,
+.link {
+    -fx-text-fill: #E31E24;
+    -fx-font-weight: bold;
+    -fx-underline: false;
+    -fx-border-color: transparent;
+    -fx-font-size: 12px;
+    -fx-letter-spacing: 1px;
+}
+
+.hyperlink:hover,
+.link:hover {
+    -fx-text-fill: #FFC800;
+    -fx-underline: true;
+}
+
+.hyperlink:visited {
+    -fx-text-fill: #E31E24;
+}
+
+.button,
+#btn-login {
+    -fx-background-color: #111111;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-background-radius: 0;
+    -fx-border-color: #E31E24;
+    -fx-border-width: 2px;
+    -fx-padding: 6px 18px;
+    -fx-cursor: hand;
+}
+
+.button:hover,
+#btn-login:hover {
+    -fx-background-color: #E31E24;
+    -fx-border-color: #111111;
+}
+
+.button:pressed,
+#btn-login:pressed {
+    -fx-background-color: #FFC800;
+    -fx-text-fill: #111111;
+    -fx-border-color: #111111;
+}
+
+.vbox {
+    -fx-background-color: transparent;
+}
+
+.hbox {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+    -fx-spacing: 8px;
+}
+
+.campo-wrapper {
+    -fx-background-color: #E31E24;   
+    -fx-padding: 10px;                
+}
+
+.campo {
+    -fx-background-color: #FFFFFF; 
+    
+    
+    
+}
+.circle{
+    -fx-fill:#FFFFFF;
+    -fx-stroke:#E31E24;
+    
+}
+
+.loginvbox{
+    -fx-border-radius: 12;
+    
+}
+
