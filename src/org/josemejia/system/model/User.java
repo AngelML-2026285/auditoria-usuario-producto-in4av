@@ -10,12 +10,38 @@ package org.josemejia.system.model;
  * @author informatica
  */
 public class User {
+    
+    
     private String name;
     private String lastname;
     private String email;
     private String password;
     private String user;
     private String idUser;
+
+    public User(String name, String lastname, String email, String password, String user, String idUser) {
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.user = user;
+        this.idUser = idUser;
+    }
+
+    public User(String name, String lastname, String email, String user, String idUser) {
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.user = user;
+        this.idUser = idUser;
+    }
+    
+    
+    
+    //constructores
+    public User(){
+    
+    }
 
     public String getName() {
         return name;

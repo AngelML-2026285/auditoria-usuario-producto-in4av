@@ -39,3 +39,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-text-fill: white;
     -fx-background-radius: 8;
 }
+
+.contenedor-principal {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #CBD5E1;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 12;
+}
+
+.imagen-registro{
+    
+    -fx-border-color: #333333;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    
+    
+}
