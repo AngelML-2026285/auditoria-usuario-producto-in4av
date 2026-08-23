@@ -15,7 +15,7 @@ import org.josemejia.system.config.ConexionDB;
  */
 public class UserRepository implements UserInterface{
     private CallableStatement callSP;
-    private ConexionDB = conexionDB = ConexionDB.getInstanciaConexionDB();
+    private ConexionDB conexionDB = ConexionDB.getInstanciaConexionDB();
     
     @Override
     public void create(User user){
