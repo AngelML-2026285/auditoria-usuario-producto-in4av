@@ -1,0 +1,68 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 23 ago 2026, 16:39:22
+    Author     : AngelML
+*/
+.root {
+    -fx-background-color: #f4f6fb;
+}
+
+.barra-superior {
+    -fx-background-color: #1e293b;
+    -fx-padding: 16 24 16 24;
+}
+
+.titulo-app {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.texto-usuario {
+    -fx-text-fill: #cbd5e1;
+    -fx-font-size: 13px;
+}
+
+.menu-lateral {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20 12 20 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 2, 0);
+}
+
+.boton-menu {
+    -fx-background-color: transparent;
+    -fx-text-fill: #334155;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.boton-menu:hover {
+    -fx-background-color: #eef2ff;
+    -fx-text-fill: #4f46e5;
+}
+
+.boton-menu-salir {
+    -fx-background-color: transparent;
+    -fx-text-fill: #dc2626;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.boton-menu-salir:hover {
+    -fx-background-color: #fee2e2;
+}
+
+.panel-bienvenida {
+    -fx-padding: 24;
+    -fx-font-size: 14px;
+    -fx-text-fill: #64748b;
+}

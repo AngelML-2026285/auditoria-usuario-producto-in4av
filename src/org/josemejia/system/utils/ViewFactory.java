@@ -40,6 +40,10 @@ public class ViewFactory {
             
             switch (nameFile){
                 case "login" -> scene = loadFileFXML("LoginView.fxml", 400, 500) ;
+                case "registro" -> scene = loadFileFXML("CreateAccountView.fxml", 650, 500);
+                case "dashboard" -> scene = loadFileFXML("DashboardView.fxml", 700, 500);
+                case "productos" -> scene = loadFileFXML("ProductoView.fxml", 700, 500);
+                case "auditoria" -> scene = loadFileFXML("AuditoriaView.fxml", 700, 500);
                 default -> throw new IllegalArgumentException("Vista no reconocida: " + nameFile);
             }
             SceneManager.getInstanciaSceneManager().changeScene(scene);
@@ -53,6 +57,21 @@ public class ViewFactory {
     
     public void viewLogin(){
         loadScene("login");
-    
+    }
+
+    public void viewRegistro(){
+        loadScene("registro");
+    }
+
+    public void viewDashboard(){
+        loadScene("dashboard");
+    }
+
+    public void viewProductos(){
+        loadScene("productos");
+    }
+
+    public void viewAuditoria(){
+        loadScene("auditoria");
     }
 }

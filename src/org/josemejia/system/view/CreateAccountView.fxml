@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" styleClass="contenedor-principal" stylesheets="@../resources/styles/CreateAccountStyles.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="650.0" styleClass="contenedor-principal" stylesheets="@../resources/styles/CreateAccountStyles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.RegistroController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="231.0" spacing="4.0" styleClass="formulario" stylesheets="@../resources/styles/CreateAccountStyles.css">
          <children>
@@ -22,18 +22,19 @@
                </font>
             </Label>
             <Label alignment="CENTER" prefHeight="33.0" prefWidth="231.0" text="Nombre completo" />
-            <TextField prefHeight="25.0" prefWidth="230.0" />
+            <TextField fx:id="txtNombre" prefHeight="25.0" prefWidth="230.0" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="232.0" text="Apellidos" />
-            <TextField />
+            <TextField fx:id="txtApellidos" />
             <Label alignment="CENTER" contentDisplay="TOP" prefHeight="17.0" prefWidth="232.0" text="Nombre de Usuario" />
-            <TextField />
+            <TextField fx:id="txtUsuario" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="260.0" text="Correo Electronico " />
-            <TextField />
+            <TextField fx:id="txtCorreo" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="260.0" text="Contraseña" />
-            <PasswordField />
+            <PasswordField fx:id="txtPassword" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="255.0" text="Confirmar Contraseña" />
-            <PasswordField />
-            <Button alignment="CENTER" contentDisplay="CENTER" lineSpacing="8.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="150.0" text="Registrarse" />
+            <PasswordField fx:id="txtConfirmarPassword" />
+            <Label fx:id="lblError" styleClass="error" />
+            <Button fx:id="btnRegistrarse" alignment="CENTER" contentDisplay="CENTER" lineSpacing="8.0" mnemonicParsing="false" onAction="#handleRegistrarse" prefHeight="20.0" prefWidth="150.0" text="Registrarse" />
          </children>
          <HBox.margin>
             <Insets />
@@ -48,7 +49,7 @@
                <image>
                   <Image url="@../resources/image/CreateAcountImage.gif" />
                </image></ImageView>
-            <Hyperlink alignment="CENTER" prefHeight="23.0" prefWidth="399.0" text="¿Ya tienes cuenta? Inicia Sesion" />
+            <Hyperlink fx:id="linkVolverLogin" alignment="CENTER" onAction="#handleVolverLogin" prefHeight="23.0" prefWidth="399.0" text="¿Ya tienes cuenta? Inicia Sesion" />
          </children>
       </VBox>
    </children>

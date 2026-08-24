@@ -1,0 +1,91 @@
+package org.josemejia.system.controller;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import org.josemejia.system.model.User;
+import org.josemejia.system.service.AuthService;
+import org.josemejia.system.utils.ViewFactory;
+
+public class RegistroController {
+
+    @FXML
+    private TextField txtNombre;
+
+    @FXML
+    private TextField txtApellidos;
+
+    @FXML
+    private TextField txtUsuario;
+
+    @FXML
+    private TextField txtCorreo;
+
+    @FXML
+    private PasswordField txtPassword;
+
+    @FXML
+    private PasswordField txtConfirmarPassword;
+
+    @FXML
+    private Label lblError;
+
+    @FXML
+    private Button btnRegistrarse;
+
+    @FXML
+    private Hyperlink linkVolverLogin;
+
+    private final AuthService authService = new AuthService();
+    private final ViewFactory viewFactory = new ViewFactory();
+
+    @FXML
+    private void handleRegistrarse() {
+        if (camposVacios()) {
+            lblError.setText("Todos los campos son obligatorios.");
+            return;
+        }
+
+        if (!txtPassword.getText().equals(txtConfirmarPassword.getText())) {
+            lblError.setText("Las contraseñas no coinciden.");
+            return;
+        }
+
+        User nuevoUsuario = new User(
+                txtNombre.getText(),
+                txtApellidos.getText(),
+                txtCorreo.getText(),
+                txtPassword.getText(),
+                txtUsuario.getText(),
+                null
+        );
+
+        authService.registrar(nuevoUsuario);
+
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Registro exitoso");
+        alerta.setHeaderText(null);
+        alerta.setContentText("Tu cuenta se creó correctamente. Ahora puedes iniciar sesión.");
+        alerta.showAndWait();
+
+        viewFactory.viewLogin();
+    }
+
+    @FXML
+    private void handleVolverLogin() {
+        viewFactory.viewLogin();
+    }
+
+    private boolean camposVacios() {
+        return txtNombre.getText().isBlank()
+                || txtApellidos.getText().isBlank()
+                || txtUsuario.getText().isBlank()
+                || txtCorreo.getText().isBlank()
+                || txtPassword.getText().isBlank()
+                || txtConfirmarPassword.getText().isBlank();
+    }
+}

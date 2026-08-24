@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="raiz" prefHeight="550.0" prefWidth="700.0" spacing="14" stylesheets="@../resources/styles/ProductoStyles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.josemejia.system.controller.ProductoController">
+   <padding>
+      <Insets bottom="18" left="18" right="18" top="18" />
+   </padding>
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="107.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/image/KinalLogoRemCuteXD.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" prefHeight="108.0" prefWidth="437.0" text="Productos" textFill="#fffafa">
+               <font>
+                  <Font name="Freestyle Script" size="49.0" />
+               </font>
+            </Label>
+            <Hyperlink fx:id="contactarAlAdmin" alignment="CENTER" onAction="#handleContactarAdmin" prefHeight="107.0" prefWidth="232.0" styleClass="hipervinculo-cute" text="Contactar al Admin/ayuda" />
+         </children>
+      </HBox>
+
+      <TableView fx:id="tablaProductos" prefHeight="308.0" prefWidth="664.0" styleClass="tabla">
+         <columns>
+            <TableColumn fx:id="colNombre" prefWidth="160.0" text="Nombre" />
+            <TableColumn fx:id="colPrecio" prefWidth="90.0" text="Precio" />
+            <TableColumn fx:id="colDescripcion" prefWidth="220.0" text="Descripción" />
+            <TableColumn fx:id="colCategoria" prefWidth="120.0" text="Categoría" />
+         </columns>
+      </TableView>
+
+      <HBox spacing="10">
+         <children>
+            <TextField fx:id="txtNombre" promptText="Nombre" styleClass="campo-texto" />
+            <TextField fx:id="txtPrecio" promptText="Precio" styleClass="campo-texto" />
+            <TextField fx:id="txtDescripcion" promptText="Descripción" styleClass="campo-texto" />
+            <TextField fx:id="txtCategoria" promptText="Categoría" styleClass="campo-texto" />
+         </children>
+      </HBox>
+
+      <HBox spacing="10">
+         <children>
+            <Button fx:id="btnGuardar" onAction="#handleGuardar" styleClass="boton-primario" text="Guardar" />
+            <Button fx:id="btnEliminar" onAction="#handleEliminar" styleClass="boton-peligro" text="Eliminar" />
+            <Button fx:id="btnLimpiar" onAction="#handleLimpiar" styleClass="boton-secundario" text="Limpiar" />
+            <Button fx:id="btnVolver" onAction="#handleVolver" styleClass="boton-secundario" text="Volver al Menú" />
+         </children>
+      </HBox>
+   </children>
+</VBox>

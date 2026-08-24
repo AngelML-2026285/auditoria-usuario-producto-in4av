@@ -6,7 +6,10 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-
+import org.josemejia.system.model.User;
+import org.josemejia.system.service.AuthService;
+import org.josemejia.system.utils.SessionManager;
+import org.josemejia.system.utils.ViewFactory;
 
 public class LoginController {
 
@@ -25,6 +28,9 @@ public class LoginController {
     @FXML
     private Hyperlink linkRegistro;
 
+    private final AuthService authService = new AuthService();
+    private final ViewFactory viewFactory = new ViewFactory();
+
     @FXML
     private void handleLogin() {
         String usuario = txtUsuario.getText();
@@ -35,8 +41,19 @@ public class LoginController {
             return;
         }
 
-        // TODO: reemplazar esto por una llamada real a un AuthService
-        
-        lblError.setText("Autenticación aún no implementada.");
+        User user = authService.login(usuario, password);
+
+        if (user == null) {
+            lblError.setText("Usuario o contraseña incorrectos.");
+            return;
+        }
+
+        SessionManager.getInstanciaSessionManager().setUsuarioActual(user);
+        viewFactory.viewDashboard();
+    }
+
+    @FXML
+    private void handleIrARegistro() {
+        viewFactory.viewRegistro();
     }
 }

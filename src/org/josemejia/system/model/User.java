@@ -1,23 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 package org.josemejia.system.model;
 
-/**
- *
- * @author informatica
- */
 public class User {
-    
-    
+
     private String name;
     private String lastname;
     private String email;
     private String password;
     private String user;
     private String idUser;
+    private String rol;
+
+    public User(String name, String lastname, String email, String password, String user, String idUser, String rol) {
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.user = user;
+        this.idUser = idUser;
+        this.rol = rol;
+    }
 
     public User(String name, String lastname, String email, String password, String user, String idUser) {
         this.name = name;
@@ -35,12 +36,8 @@ public class User {
         this.user = user;
         this.idUser = idUser;
     }
-    
-    
-    
-    //constructores
-    public User(){
-    
+
+    public User() {
     }
 
     public String getName() {
@@ -90,5 +87,12 @@ public class User {
     public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
-    
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 }

@@ -38,7 +38,7 @@
             <PasswordField fx:id="txtPassword" prefHeight="31.0" prefWidth="380.0" styleClass="campo" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Hyperlink fx:id="linkRegistro" styleClass="link" text="¿No tienes cuenta? Registrate" />
+                  <Hyperlink fx:id="linkRegistro" onAction="#handleIrARegistro" styleClass="link" text="¿No tienes cuenta? Registrate" />
                </children>
             </HBox>
             <Label fx:id="lblError" styleClass="error" />
