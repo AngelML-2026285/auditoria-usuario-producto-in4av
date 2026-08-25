@@ -22,17 +22,17 @@
                </font>
             </Label>
             <Label alignment="CENTER" prefHeight="33.0" prefWidth="231.0" text="Nombre completo" />
-            <TextField prefHeight="25.0" prefWidth="230.0" />
+            <TextField fx:id="txtNombres" prefHeight="25.0" prefWidth="230.0" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="232.0" text="Apellidos" />
-            <TextField />
+            <TextField fx:id="txtApellidos" />
             <Label alignment="CENTER" contentDisplay="TOP" prefHeight="17.0" prefWidth="232.0" text="Nombre de Usuario" />
-            <TextField />
+            <TextField fx:id="txtNombreUsuario" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="260.0" text="Correo Electronico " />
-            <TextField promptText="Example@email.com" />
+            <TextField fx:id="txtEmail" promptText="Example@email.com" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="260.0" text="Contraseña" />
-            <PasswordField promptText="utiliza una clave segura" />
+            <PasswordField fx:id="pswPassword" promptText="utiliza una clave segura" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="255.0" text="Confirmar Contraseña" />
-            <PasswordField />
+            <PasswordField fx:id="pswPasswordConfirm" />
             <Button alignment="CENTER" contentDisplay="CENTER" lineSpacing="8.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="150.0" text="Registrarse" />
          </children>
          <HBox.margin>
