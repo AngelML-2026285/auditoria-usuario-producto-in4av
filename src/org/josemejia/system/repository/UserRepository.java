@@ -24,7 +24,7 @@ public class UserRepository implements UserInterface {
             sentencia.setString(3, user.getEmail());
             sentencia.setString(4, user.getUser());
             sentencia.setString(5, user.getPassword());
-            sentencia.setString(6, "cajero");
+            sentencia.setString(6, "usuario");
 
             sentencia.executeUpdate();
 
