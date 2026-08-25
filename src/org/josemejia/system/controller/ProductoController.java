@@ -1,21 +1,35 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.josemejia.system.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import org.josemejia.system.MainClass;
 import org.josemejia.system.model.Producto;
 import org.josemejia.system.model.User;
 import org.josemejia.system.service.ProductoService;
+import org.josemejia.system.utils.AnimacionUtils;
 import org.josemejia.system.utils.SessionManager;
 import org.josemejia.system.utils.ViewFactory;
+/**
+ *
+ * @author mejia
+ */
 
 public class ProductoController {
+
+    @FXML
+    private VBox raiz;
 
     @FXML
     private TableView<Producto> tablaProductos;
@@ -44,6 +58,21 @@ public class ProductoController {
     @FXML
     private TextField txtCategoria;
 
+    @FXML
+    private TextField txtImagen;
+
+    @FXML
+    private Button btnGuardar;
+
+    @FXML
+    private Button btnEliminar;
+
+    @FXML
+    private Button btnLimpiar;
+
+    @FXML
+    private Button btnVolver;
+
     private final ProductoService productoService = new ProductoService();
     private final ViewFactory viewFactory = new ViewFactory();
 
@@ -55,6 +84,7 @@ public class ProductoController {
         colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
         colDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
         colCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+
         tablaProductos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         tablaProductos.getSelectionModel().selectedItemProperty().addListener((observable, anterior, actual) -> {
@@ -64,10 +94,17 @@ public class ProductoController {
                 txtPrecio.setText(String.valueOf(actual.getPrecio()));
                 txtDescripcion.setText(actual.getDescripcion());
                 txtCategoria.setText(actual.getCategoria());
+                txtImagen.setText(actual.getImagen());
             }
         });
 
         cargarTabla();
+
+        AnimacionUtils.aplicarFadeIn(raiz);
+        AnimacionUtils.aplicarEfectoHover(btnGuardar);
+        AnimacionUtils.aplicarEfectoHover(btnEliminar);
+        AnimacionUtils.aplicarEfectoHover(btnLimpiar);
+        AnimacionUtils.aplicarEfectoHover(btnVolver);
     }
 
     private void cargarTabla() {
@@ -93,13 +130,14 @@ public class ProductoController {
         User usuarioActual = SessionManager.getInstanciaSessionManager().getUsuarioActual();
 
         if (productoSeleccionado == null) {
-            Producto producto = new Producto(txtNombre.getText(), precio, txtDescripcion.getText(), txtCategoria.getText());
+            Producto producto = new Producto(txtNombre.getText(), precio, txtDescripcion.getText(), txtCategoria.getText(), txtImagen.getText());
             productoService.crear(producto, usuarioActual);
         } else {
             productoSeleccionado.setNombre(txtNombre.getText());
             productoSeleccionado.setPrecio(precio);
             productoSeleccionado.setDescripcion(txtDescripcion.getText());
             productoSeleccionado.setCategoria(txtCategoria.getText());
+            productoSeleccionado.setImagen(txtImagen.getText());
             productoService.actualizar(productoSeleccionado, usuarioActual);
         }
 
@@ -136,6 +174,7 @@ public class ProductoController {
         txtPrecio.clear();
         txtDescripcion.clear();
         txtCategoria.clear();
+        txtImagen.clear();
         tablaProductos.getSelectionModel().clearSelection();
     }
 
