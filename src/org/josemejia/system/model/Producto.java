@@ -1,4 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package org.josemejia.system.model;
+/**
+ *
+ * @author mejia
+ */
 
 public class Producto {
 
@@ -7,20 +15,23 @@ public class Producto {
     private double precio;
     private String descripcion;
     private String categoria;
+    private String imagen;
 
-    public Producto(String idProducto, String nombre, double precio, String descripcion, String categoria) {
+    public Producto(String idProducto, String nombre, double precio, String descripcion, String categoria, String imagen) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.precio = precio;
         this.descripcion = descripcion;
         this.categoria = categoria;
+        this.imagen = imagen;
     }
 
-    public Producto(String nombre, double precio, String descripcion, String categoria) {
+    public Producto(String nombre, double precio, String descripcion, String categoria, String imagen) {
         this.nombre = nombre;
         this.precio = precio;
         this.descripcion = descripcion;
         this.categoria = categoria;
+        this.imagen = imagen;
     }
 
     public Producto() {
@@ -64,5 +75,13 @@ public class Producto {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 }
