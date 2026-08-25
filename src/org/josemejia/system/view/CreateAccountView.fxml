@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" styleClass="contenedor-principal" stylesheets="@../resources/styles/CreateAccountStyles.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="526.0" styleClass="contenedor-principal" stylesheets="@../resources/styles/CreateAccountStyles.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="231.0" spacing="4.0" styleClass="formulario" stylesheets="@../resources/styles/CreateAccountStyles.css">
          <children>
@@ -28,9 +28,9 @@
             <Label alignment="CENTER" contentDisplay="TOP" prefHeight="17.0" prefWidth="232.0" text="Nombre de Usuario" />
             <TextField />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="260.0" text="Correo Electronico " />
-            <TextField />
+            <TextField promptText="Example@email.com" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="260.0" text="Contraseña" />
-            <PasswordField />
+            <PasswordField promptText="utiliza una clave segura" />
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="255.0" text="Confirmar Contraseña" />
             <PasswordField />
             <Button alignment="CENTER" contentDisplay="CENTER" lineSpacing="8.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="150.0" text="Registrarse" />
@@ -42,11 +42,11 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
-      <VBox prefHeight="430.0" prefWidth="412.0">
+      <VBox prefHeight="476.0" prefWidth="271.0">
          <children>
-            <ImageView fitHeight="441.0" fitWidth="442.0" pickOnBounds="true" preserveRatio="true" styleClass="imagen-registro">
+            <ImageView fitHeight="194.0" fitWidth="266.0" pickOnBounds="true" preserveRatio="true" styleClass="imagen-registro">
                <image>
-                  <Image url="@../resources/image/CreateAcountImage.gif" />
+                  <Image url="@../resources/image/KinalLogoRemCuteXD.png" />
                </image></ImageView>
             <Hyperlink alignment="CENTER" prefHeight="23.0" prefWidth="399.0" text="¿Ya tienes cuenta? Inicia Sesion" />
          </children>

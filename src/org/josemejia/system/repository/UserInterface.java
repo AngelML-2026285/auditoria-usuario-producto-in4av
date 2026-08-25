@@ -5,12 +5,13 @@
 
 package org.josemejia.system.repository;
 
+import org.josemejia.system.model.User;
+
 /**
  *
  * @author informatica
  */
 public interface UserInterface {
-    void create()
-    
+    void create(User user);
     
 }
