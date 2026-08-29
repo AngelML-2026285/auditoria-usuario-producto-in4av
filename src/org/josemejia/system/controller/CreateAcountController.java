@@ -10,10 +10,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import org.josemejia.system.utils.Validations;
 import org.josemejia.system.utils.ViewFactory;
-import org.josemejia.system.utils.AlertInformation; 
+import org.josemejia.system.utils.AlertInformation;
+import org.josemejia.system.service.UserService;
+import org.josemejia.system.service.UserStatus;
+import static org.josemejia.system.service.UserStatus.ERROR_USER_CREATE;
+import static org.josemejia.system.service.UserStatus.USER_ALREADY_EXIST;
+import static org.josemejia.system.service.UserStatus.USER_CREATED;
 
 public class CreateAcountController implements Initializable {
     
+    
+    //bloque de los FXML
     @FXML
     private TextField txtName;
     
@@ -39,6 +46,7 @@ public class CreateAcountController implements Initializable {
     private Button btnCancel;
     
     private Validations validate = new Validations();
+    private UserService userService = new UserService();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,6 +84,7 @@ public class CreateAcountController implements Initializable {
         }
         
         String msgField = "";
+        // el /n es para un salto de linea al lanzar la alerta
         if(validate.validateTextLength(user,25)== false)
             msgField += "El campo Usuario es mayor a 25 letras \n";
         if(validate.validateTextLength(name,50)== false)
@@ -119,14 +128,38 @@ public class CreateAcountController implements Initializable {
             return;
         }
         
-        AlertInformation.viewAlert(
-            "Registro Exitoso",
-            "Cuenta creada",
-            "El usuario '" + user + "' ha sido registrado correctamente.",
-            "EXITO"
-        );
-        
-        limpiarCampos();
+        UserStatus status = userService.createUser(user, name, lastName, email, password);
+
+        switch (status) {
+            case USER_ALREADY_EXIST -> AlertInformation.viewAlert(
+                "Cuenta existente",
+                "Correo ya registrado",
+                "Ya existe una cuenta con ese correo electronico.",
+                "ERROR"
+            );
+
+            case ERROR_USER_CREATE -> AlertInformation.viewAlert(
+                "Error",
+                "No se pudo crear la cuenta",
+                "Ocurrió un error al registrar el usuario, intenta de nuevo.",
+                "ERROR"
+            );
+
+            case USER_CREATED -> {
+                AlertInformation.viewAlert(
+                    "Registro Exitoso",
+                    "Cuenta creada",
+                    "El usuario '" + user + "' ha sido registrado correctamente.",
+                    "EXITO"
+                );
+
+                limpiarCampos();
+                ViewFactory viewFacto = new ViewFactory();
+                viewFacto.viewLogin();
+            }
+
+            default -> {}
+        }
     }
     
     private void limpiarCampos() {
