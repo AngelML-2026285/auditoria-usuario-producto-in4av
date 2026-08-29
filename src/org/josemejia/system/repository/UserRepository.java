@@ -17,25 +17,28 @@ import org.josemejia.system.config.ConexionDB;
  */
 public class UserRepository implements UserInterface {
 
-    private static final String SP_CREAR = "{call sp_usuario_crear(?, ?, ?, ?, ?, ?)}";
-
-    private static final String SP_LOGIN = "{call sp_usuario_login(?, ?)}";
+    private CallableStatement callSP;
+    private ConexionDB conexionDB=ConexionDB.getInstanciaConexionDB(); 
 
     @Override
     public void create(User user) {
-        try (Connection conexion = ConexionDB.getInstanciaConexionDB().getConnection(); CallableStatement sentencia = conexion.prepareCall(SP_CREAR)) {
+        try {
+            callSP = conexionDB.getConnection()
+                    .prepareCall("{call sp_create_users(?,?,?,?,?)}");
 
-            sentencia.setString(1, user.getName());
-            sentencia.setString(2, user.getLastname());
-            sentencia.setString(3, user.getEmail());
-            sentencia.setString(4, user.getUser());
-            sentencia.setString(5, user.getPassword());
-            sentencia.setString(6, "usuario");
+            callSP.setString(1, user.getName());
+            callSP.setString(2, user.getLastname());
+            callSP.setString(3, user.getEmail());
+            callSP.setString(4, user.getUser());
+            callSP.setString(5, user.getPassword());
 
-            sentencia.executeUpdate();
+            callSP.execute();
+            callSP.close();
 
         } catch (SQLException e) {
-            throw new IllegalStateException("No se pudo registrar el usuario.", e);
+            System.out.println("Error al crear usuario repository");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
     
