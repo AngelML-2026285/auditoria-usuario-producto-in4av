@@ -53,6 +53,18 @@ public class ViewFactory {
                     scene = loadFileFXML("CreateAccountView.fxml", 526, 520);
                 }
 
+                case "dashboard" -> {
+                    SceneManager.getInstanciaSceneManager()
+                            .getStagePrincipal()
+                            .setTitle("DASHBOARD");
+
+                    SceneManager.getInstanciaSceneManager()
+                            .getStagePrincipal()
+                            .setResizable(true);
+
+                    scene = loadFileFXML("DashboardView.fxml", 700, 500);
+                }
+
                 default ->
                     throw new IllegalArgumentException(
                             "Vista no reconocida: " + nameFile
@@ -78,5 +90,9 @@ public class ViewFactory {
     public void viewLogin() {
         loadScene("login");
 
+    }
+
+    public void viewDashboard() {
+        loadScene("dashboard");
     }
 }

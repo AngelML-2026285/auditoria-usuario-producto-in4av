@@ -2,8 +2,6 @@ package org.josemejia.system.service;
 
 import org.josemejia.system.model.User;
 import org.josemejia.system.repository.AuthenticationRepository;
-import org.josemejia.system.service.AuthenticationStatus;
-import org.josemejia.system.service.UserService;
 
 public class AuthenticationService {
 

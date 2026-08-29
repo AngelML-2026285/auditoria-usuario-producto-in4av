@@ -9,17 +9,18 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import org.josemejia.system.service.AuthenticationService;
+import org.josemejia.system.service.AuthenticationStatus;
+import org.josemejia.system.utils.UserSession;
 import org.josemejia.system.utils.ViewFactory;
 
 
 public class LoginController implements Initializable {
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb){
-    
+
     }
-    
 
     @FXML
     private TextField txtUsuario;
@@ -36,21 +37,35 @@ public class LoginController implements Initializable {
     @FXML
     private Hyperlink linkRegistro;
 
+    private AuthenticationService authService = new AuthenticationService();
+
     @FXML
     private void handleLogin() {
-        String usuario = txtUsuario.getText();
-        String password = txtPassword.getText();
+        String email = txtUsuario.getText().trim();
+        String password = txtPassword.getText().trim();
 
-        if (usuario == null || usuario.isBlank() || password == null || password.isBlank()) {
+        if (email.isBlank() || password.isBlank()) {
             lblError.setText("Usuario y contraseña son obligatorios.");
             return;
         }
 
-        // TODO: reemplazar esto por una llamada real a un AuthService
-        
-        lblError.setText("Autenticación aún no implementada.");
+        AuthenticationStatus status = authService.login(email, password);
+
+        switch (status) {
+            case NOT_EXIST_USER ->
+                lblError.setText("No existe una cuenta con ese usuario o correo. Debes registrarte.");
+
+            case INVALID_PASSWORD ->
+                lblError.setText("Contraseña incorrecta.");
+
+            case LOGIN_SUCCESS -> {
+                lblError.setText("");
+                UserSession.getInstanciaUserSession().setUser(authService.getAuthenticatedUser());
+                new ViewFactory().viewDashboard();
+            }
+        }
     }
-    
+
     @FXML
     private void onRegister() {
         ViewFactory viewFacto = new ViewFactory();

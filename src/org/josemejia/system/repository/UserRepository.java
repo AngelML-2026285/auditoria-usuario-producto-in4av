@@ -7,7 +7,8 @@ package org.josemejia.system.repository;
 
 import org.josemejia.system.model.User;
 import java.sql.CallableStatement;
-import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.josemejia.system.config.ConexionDB;
 
@@ -18,7 +19,7 @@ import org.josemejia.system.config.ConexionDB;
 public class UserRepository implements UserInterface {
 
     private CallableStatement callSP;
-    private ConexionDB conexionDB=ConexionDB.getInstanciaConexionDB(); 
+    private ConexionDB conexionDB = ConexionDB.getInstanciaConexionDB();
 
     @Override
     public void create(User user) {
@@ -41,7 +42,36 @@ public class UserRepository implements UserInterface {
             e.printStackTrace();
         }
     }
-    
-    
 
+    @Override
+    public User findByEmail(String email) {
+        User user = null;
+
+        try {
+            PreparedStatement statement = conexionDB.getConnection()
+                    .prepareStatement("select * from Users where email = ?");
+            statement.setString(1, email);
+
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                user = new User();
+                user.setIdUser(result.getString("id_user"));
+                user.setName(result.getString("name"));
+                user.setLastname(result.getString("lastname"));
+                user.setEmail(result.getString("email"));
+                user.setUser(result.getString("user"));
+                user.setPassword(result.getString("password"));
+            }
+
+            result.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar usuario repository");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return user;
+    }
 }
