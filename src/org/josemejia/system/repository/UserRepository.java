@@ -7,7 +7,6 @@ package org.josemejia.system.repository;
 
 import org.josemejia.system.model.User;
 import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.josemejia.system.config.ConexionDB;
@@ -49,8 +48,8 @@ public class UserRepository implements UserInterface {
         User user = null;
 
         try {
-            PreparedStatement statement = conexionDB.getConnection()
-                    .prepareStatement("select * from Users where email = ?");
+            CallableStatement statement = conexionDB.getConnection()
+                    .prepareCall("{call sp_find_user_by_email(?)}");
             statement.setString(1, email);
 
             ResultSet result = statement.executeQuery();
@@ -81,10 +80,9 @@ public class UserRepository implements UserInterface {
         User user = null;
 
         try {
-            PreparedStatement statement = conexionDB.getConnection()
-                    .prepareStatement("select * from Users where email = ? or user = ?");
+            CallableStatement statement = conexionDB.getConnection()
+                    .prepareCall("{call sp_find_user_by_identifier(?)}");
             statement.setString(1, identifier);
-            statement.setString(2, identifier);
 
             ResultSet result = statement.executeQuery();
             if (result.next()) {
