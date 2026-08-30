@@ -40,6 +40,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-radius: 8;
 }
 
+.formulario .button:hover {
+    -fx-background-color: #1D4ED8;
+    -fx-cursor: hand;
+}
+
+.formulario .hyperlink {
+    -fx-text-fill: #93C5FD;
+    -fx-font-size: 12px;
+    -fx-border-color: transparent;
+}
+
+.formulario .hyperlink:hover {
+    -fx-text-fill: #BFDBFE;
+}
+
+.formulario .hyperlink:visited {
+    -fx-text-fill: #93C5FD;
+}
+
+.formulario .error-label {
+    -fx-text-fill: #FCA5A5;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-wrap-text: true;
+}
+
 .contenedor-principal {
     -fx-background-color: white;
     -fx-background-radius: 12;

@@ -9,7 +9,7 @@ package org.josemejia.system.repository;
  * @author mejia
  */
 import org.josemejia.system.model.User;
-import java.sql.PreparedStatement;
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.josemejia.system.config.ConexionDB;
@@ -23,11 +23,10 @@ public class AuthenticationRepository implements AuthenticationInterface {
         User user = null;
 
         try {
-            PreparedStatement statement = conexionDB.getConnection()
-                    .prepareStatement("select * from Users where (email = ? or user = ?) and password = ?");
+            CallableStatement statement = conexionDB.getConnection()
+                    .prepareCall("{call sp_login(?, ?)}");
             statement.setString(1, identifier);
-            statement.setString(2, identifier);
-            statement.setString(3, password);
+            statement.setString(2, password);
 
             ResultSet result = statement.executeQuery();
             if (result.next()) {
