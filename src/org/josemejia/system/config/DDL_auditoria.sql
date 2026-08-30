@@ -13,7 +13,7 @@ create table Users(
 );
 
 
-drop procedure sp_create_users;
+drop procedure if exists sp_create_users;
 Delimiter $$
 
 create procedure sp_create_users(
@@ -27,6 +27,52 @@ begin
 
     insert into Users(name, lastname, email, user, password, id_user)
         values(name_p, lastname_p, email_p, user_p, password_p, uuid());
+
+end$$
+
+delimiter ;
+
+
+drop procedure if exists sp_find_user_by_email;
+Delimiter $$
+
+create procedure sp_find_user_by_email(
+    in email_p varchar(50)
+)
+begin
+
+    select * from Users where email = email_p;
+
+end$$
+
+delimiter ;
+
+
+drop procedure if exists sp_find_user_by_identifier;
+Delimiter $$
+
+create procedure sp_find_user_by_identifier(
+    in identifier_p varchar(50)
+)
+begin
+
+    select * from Users where email = identifier_p or user = identifier_p;
+
+end$$
+
+delimiter ;
+
+
+drop procedure if exists sp_login;
+Delimiter $$
+
+create procedure sp_login(
+    in identifier_p varchar(50),
+    in password_p varchar(35)
+)
+begin
+
+    select * from Users where (email = identifier_p or user = identifier_p) and password = password_p;
 
 end$$
 
