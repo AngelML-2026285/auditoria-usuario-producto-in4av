@@ -9,13 +9,13 @@ public class AuthenticationService {
     private UserService userService = new UserService();
     private User authenticatedUser;
 
-    public AuthenticationStatus login(String email, String password) {
-        User existingUser = userService.findByEmail(email);
+    public AuthenticationStatus login(String identifier, String password) {
+        User existingUser = userService.findByEmailOrUsername(identifier);
         if (existingUser == null) {
             return AuthenticationStatus.NOT_EXIST_USER;
         }
 
-        User user = authRepo.login(email, password);
+        User user = authRepo.login(identifier, password);
         if (user == null) {
             return AuthenticationStatus.INVALID_PASSWORD;
         }

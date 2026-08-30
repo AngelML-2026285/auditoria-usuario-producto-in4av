@@ -38,8 +38,17 @@ public class ViewFactory {
 
         try {
             switch (nameFile) {
-                case "login" ->
+                case "login" -> {
+                    SceneManager.getInstanciaSceneManager()
+                            .getStagePrincipal()
+                            .setTitle("INICIO DE SESION");
+
+                    SceneManager.getInstanciaSceneManager()
+                            .getStagePrincipal()
+                            .setResizable(false);
+
                     scene = loadFileFXML("LoginView.fxml", 400, 500);
+                }
 
                 case "register" -> {
                     SceneManager.getInstanciaSceneManager()

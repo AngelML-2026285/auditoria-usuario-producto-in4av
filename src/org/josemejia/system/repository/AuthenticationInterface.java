@@ -11,6 +11,6 @@ package org.josemejia.system.repository;
 import org.josemejia.system.model.User;
 
 public interface AuthenticationInterface {
-    User login(String email, String password);
+    User login(String identifier, String password);
 }
 

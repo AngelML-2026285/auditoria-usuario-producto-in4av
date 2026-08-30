@@ -19,14 +19,15 @@ public class AuthenticationRepository implements AuthenticationInterface {
     private ConexionDB conexionDB = ConexionDB.getInstanciaConexionDB();
 
     @Override
-    public User login(String email, String password) {
+    public User login(String identifier, String password) {
         User user = null;
 
         try {
             PreparedStatement statement = conexionDB.getConnection()
-                    .prepareStatement("select * from Users where email = ? and password = ?");
-            statement.setString(1, email);
-            statement.setString(2, password);
+                    .prepareStatement("select * from Users where (email = ? or user = ?) and password = ?");
+            statement.setString(1, identifier);
+            statement.setString(2, identifier);
+            statement.setString(3, password);
 
             ResultSet result = statement.executeQuery();
             if (result.next()) {

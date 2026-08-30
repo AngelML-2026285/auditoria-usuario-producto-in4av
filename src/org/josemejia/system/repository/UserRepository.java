@@ -22,7 +22,7 @@ public class UserRepository implements UserInterface {
     private ConexionDB conexionDB = ConexionDB.getInstanciaConexionDB();
 
     @Override
-    public void create(User user) {
+    public void create(User user) throws SQLException {
         try {
             callSP = conexionDB.getConnection()
                     .prepareCall("{call sp_create_users(?,?,?,?,?)}");
@@ -40,6 +40,7 @@ public class UserRepository implements UserInterface {
             System.out.println("Error al crear usuario repository");
             System.out.println(e.getMessage());
             e.printStackTrace();
+            throw e; // re-lanzamos para que UserService.createUser() se entere del fallo
         }
     }
 
@@ -68,6 +69,39 @@ public class UserRepository implements UserInterface {
 
         } catch (SQLException e) {
             System.out.println("Error al buscar usuario repository");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
+    @Override
+    public User findByEmailOrUsername(String identifier) {
+        User user = null;
+
+        try {
+            PreparedStatement statement = conexionDB.getConnection()
+                    .prepareStatement("select * from Users where email = ? or user = ?");
+            statement.setString(1, identifier);
+            statement.setString(2, identifier);
+
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                user = new User();
+                user.setIdUser(result.getString("id_user"));
+                user.setName(result.getString("name"));
+                user.setLastname(result.getString("lastname"));
+                user.setEmail(result.getString("email"));
+                user.setUser(result.getString("user"));
+                user.setPassword(result.getString("password"));
+            }
+
+            result.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar usuario por correo o usuario, repository");
             System.out.println(e.getMessage());
             e.printStackTrace();
         }

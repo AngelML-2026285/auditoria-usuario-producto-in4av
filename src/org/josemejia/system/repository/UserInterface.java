@@ -6,12 +6,14 @@
 package org.josemejia.system.repository;
 
 import org.josemejia.system.model.User;
+import java.sql.SQLException;
 
 /**
  *
  * @author informatica
  */
 public interface UserInterface {
-    void create(User user);
+    void create(User user) throws SQLException;
     User findByEmail(String email);
+    User findByEmailOrUsername(String identifier);
 }
